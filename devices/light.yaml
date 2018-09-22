@@ -1,0 +1,61 @@
+- platform: yeelight
+  devices:
+    192.168.1.105:
+      name: Ruban LED TV
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.106:
+      name: Ruban LED Cheminee
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.80:
+      name: Light Chambre 1
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.81:
+      name: Light Chambre 2
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.84:
+      name: Light Salon D1
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.22:
+      name: Light Salon D2
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.30:
+      name: Light Salon G1
+      transition: 2000
+      save_on_change: False
+
+    192.168.1.31:
+      name: Light Salon G2
+      transition: 2000
+      save_on_change: False
+
+- platform: group
+  name: Chambre
+  entities:
+    - light.light_chambre_1
+    - light.light_chambre_2
+
+- platform: group
+  name: Salon
+  entities:
+    - light.light_salon_d1
+    - light.light_salon_d2
+    - light.light_salon_g1
+    - light.light_salon_g2
+
+- platform: group
+  name: Ruban
+  entities:
+    - light.ruban_led_cheminee
+    - light.ruban_led_tv

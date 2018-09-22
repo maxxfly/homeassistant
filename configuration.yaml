@@ -95,51 +95,7 @@ weather:
     monitored_conditions:
       - weather
 
-sensor:
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: memory_free
-      - type: processor_use
-
-  - platform: waqi 
-    token: !secret waqi_token 
-    locations:
-      - Nogent-sur-Marne
-
-
-  - platform: template
-    sensors:
-      salon_temperature:
-        value_template: "{{ states.climate.thermostat.attributes.current_temperature }}"
-        friendly_name: "Temperature salon"
-        unit_of_measurement: '°C'
-
-  - platform: template
-    sensors:
-      salon_air_purifier_humidity:
-        value_template: "{{ states.fan.xiaomi_miio_device.attributes.humidity }}"
-        friendly_name: "Salon Humidity"
-        unit_of_measurement: "%"
-        device_class: humidity
-
-      living_room_air_purifier_aqi:
-        value_template: "{{ states.fan.xiaomi_miio_device.attributes.aqi }}"
-        friendly_name: "Living Room AQI"
-        unit_of_measurement: AQI
-        icon_template: mdi:chart-bubble
-
-      temperature_nogent:
-        value_template: "{{ states.weather.openweathermap.attributes.temperature }}"
-        friendly_name: "Temperature Nogent"
-        unit_of_measurement: '°C'
-
-      motor_fan_salon:
-        value_template: "{{ states.fan.xiaomi_miio_device.attributes.motor_speed }}"
-        friendly_name: "Vitesse Ventilateur Salon"
-        unit_of_measurement: 'T/M'
-        icon_template: mdi:speedometer
+sensor: !include devices/sensor.yaml
 
 fan:
   - platform: xiaomi_miio
@@ -160,82 +116,9 @@ notify:
     platform: pushbullet
     api_key: !secret pushbullet_api_key
 
-light:
-  - platform: yeelight
-    devices:
-      192.168.1.105:
-        name: Ruban LED TV
-        transition: 2000
-        save_on_change: False
+light: !include devices/light.yaml
 
-      192.168.1.106:
-        name: Ruban LED Cheminee
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.80:
-        name: Light Chambre 1
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.81:
-        name: Light Chambre 2
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.84:
-        name: Light Salon D1
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.22:
-        name: Light Salon D2
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.30:
-        name: Light Salon G1
-        transition: 2000
-        save_on_change: False
-
-      192.168.1.31:
-        name: Light Salon G2
-        transition: 2000
-        save_on_change: False
-
-  - platform: group
-    name: Chambre
-    entities:
-      - light.light_chambre_1
-      - light.light_chambre_2
-  - platform: group
-    name: Salon
-    entities:
-      - light.light_salon_d1
-      - light.light_salon_d2
-      - light.light_salon_g1
-      - light.light_salon_g2
-  - platform: group
-    name: Ruban
-    entities:
-      - light.ruban_led_cheminee
-      - light.ruban_led_tv
-
-
-media_player:
-  - platform: kodi
-    host: 192.168.1.100
-    name: Kodi
-
-  - platform: cast
-    host: 192.168.1.100
-
-  - platform: cast
-    host: 192.168.1.151
- 
-  - platform: songpal
-    name: HT CT800
-    endpoint: http://192.168.1.151:10000/sony/
+media_player: !include devices/media_player.yaml
 
 input_boolean:
   away:
