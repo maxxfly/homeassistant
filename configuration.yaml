@@ -189,5 +189,5 @@ switch:
     token: !secret switch_aqara_token 
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automations/
 script: !include scripts.yaml

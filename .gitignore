@@ -2,6 +2,10 @@
 *
 !devices
 !devices/*.yaml
+
+!automations
+!automations/*.yaml
+
 !*.yaml
 !.gitignore
 secrets.yaml

@@ -1,0 +1,28 @@
+- alias: "plug on"
+  trigger:
+    platform: sun
+    event: sunset
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "off"
+
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.xiaomi_switch
+
+- alias: "plug off"
+  trigger:
+    - platform: time
+      at: '03:00:00'
+
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - switch.xiaomi_switch
+
+

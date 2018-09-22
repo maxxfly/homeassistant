@@ -1,0 +1,50 @@
+- alias: "media pause"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'idle'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_prelight
+
+    - service: fan.set_speed
+      entity_id: fan.xiaomi_miio_device
+      data:
+        speed: silent
+
+- alias: "media play"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'playing'
+  action:
+    service: scene.turn_on
+    entity_id: scene.media_light_play
+
+- alias: "media pause"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 20
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_light_pause
+
+- alias: "media off"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'off'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_light_off
+
+    - service: fan.set_speed
+      entity_id: fan.xiaomi_miio_device
+      data:
+        speed: auto
+

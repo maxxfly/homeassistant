@@ -1,0 +1,144 @@
+- alias: "turn_on_light_during_vacances"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:40:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "on"
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 120
+        rgb_color: [255,186,128]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
+
+- alias: "turn_off_light_during_vacances"
+  trigger:
+    - platform: time
+      at: '01:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "on"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
+- alias: "disable_vacances"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'off'
+
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 120
+        rgb_color: [255,186,128]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
+- alias: "vacances_unavailable"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: light.light_salon_d1
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_d2
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_g1
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_g2
+        state: "off"
+
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away
+    - service: notify.notify
+      data:
+        message: 'Impossible d activer le mode vacances'
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 10001
+        gw_mac: 78:11:DC:DA:D1:5C
+
+- alias: "vacances_avaiable"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: light.light_salon_d1
+      state: "on"
+
+    - condition: state
+      entity_id: light.light_salon_d2
+      state: "on"
+
+    - condition: state
+      entity_id: light.light_salon_g1
+      state: "on"
+
+    - condition: state
+      entity_id: light.light_salon_g2
+      state: "on"
+
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 10002
+        gw_mac: 78:11:DC:DA:D1:5C
+    - service: light.turn_on
+      data:
+        brightness: 255
+        rgb_color: [255, 0, 0]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+    - delay: "00:00:10"
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
