@@ -1,0 +1,310 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 48.8333
+  longitude: 2.4833
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 26
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Paris
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+recorder:
+  db_url: !secret mysql_path
+  exclude: 
+    domains:
+      - automation
+      - weblink
+      - updater
+    entities:
+      - sun.sun # Don't record sun data
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date
+
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: True
+
+# Discover some devices automatically
+#discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+  exclude:
+    domains:
+      - automation
+      - weblink
+
+history_graph:
+  gr1:
+    name: Temperature
+    entities:
+      - sensor.temperature_158d0002042559
+      - sensor.temperature_158d00022d081c
+      - climate.thermostat
+    hours_to_show: 48 
+  gr2:
+    name: Humidite
+    entities:
+      - sensor.humidity_158d0002042559
+      - sensor.humidity_158d00022d081c
+    hours_to_show: 48
+
+# View all events in a logbook
+logbook:
+
+lirc:
+
+# Enables a map showing the location of tracked devices
+#map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+weather:
+  - platform: openweathermap
+    api_key: !secret openweathermap_token 
+    mode: daily
+    forecast: true
+    monitored_conditions:
+      - weather
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: processor_use
+
+  - platform: waqi 
+    token: !secret waqi_token 
+    locations:
+      - Nogent-sur-Marne
+
+
+  - platform: template
+    sensors:
+      salon_temperature:
+        value_template: "{{ states.climate.thermostat.attributes.current_temperature }}"
+        friendly_name: "Temperature salon"
+        unit_of_measurement: '°C'
+
+  - platform: template
+    sensors:
+      salon_air_purifier_humidity:
+        value_template: "{{ states.fan.xiaomi_miio_device.attributes.humidity }}"
+        friendly_name: "Salon Humidity"
+        unit_of_measurement: "%"
+        device_class: humidity
+
+      living_room_air_purifier_aqi:
+        value_template: "{{ states.fan.xiaomi_miio_device.attributes.aqi }}"
+        friendly_name: "Living Room AQI"
+        unit_of_measurement: AQI
+        icon_template: mdi:chart-bubble
+
+      temperature_nogent:
+        value_template: "{{ states.weather.openweathermap.attributes.temperature }}"
+        friendly_name: "Temperature Nogent"
+        unit_of_measurement: '°C'
+
+      motor_fan_salon:
+        value_template: "{{ states.fan.xiaomi_miio_device.attributes.motor_speed }}"
+        friendly_name: "Vitesse Ventilateur Salon"
+        unit_of_measurement: 'T/M'
+        icon_template: mdi:speedometer
+
+fan:
+  - platform: xiaomi_miio
+    host: 192.168.1.133
+    token: !secret fan_salon_token 
+
+#  - platform: yr
+
+# Text to speech
+# tts:
+#  - platform: google
+
+# Cloud
+cloud:
+
+notify:
+  - name: notify
+    platform: pushbullet
+    api_key: !secret pushbullet_api_key
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.105:
+        name: Ruban LED TV
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.106:
+        name: Ruban LED Cheminee
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.80:
+        name: Light Chambre 1
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.81:
+        name: Light Chambre 2
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.84:
+        name: Light Salon D1
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.22:
+        name: Light Salon D2
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.30:
+        name: Light Salon G1
+        transition: 2000
+        save_on_change: False
+
+      192.168.1.31:
+        name: Light Salon G2
+        transition: 2000
+        save_on_change: False
+
+  - platform: group
+    name: Chambre
+    entities:
+      - light.light_chambre_1
+      - light.light_chambre_2
+  - platform: group
+    name: Salon
+    entities:
+      - light.light_salon_d1
+      - light.light_salon_d2
+      - light.light_salon_g1
+      - light.light_salon_g2
+  - platform: group
+    name: Ruban
+    entities:
+      - light.ruban_led_cheminee
+      - light.ruban_led_tv
+
+
+media_player:
+  - platform: kodi
+    host: 192.168.1.100
+    name: Kodi
+
+  - platform: cast
+    host: 192.168.1.100
+
+  - platform: cast
+    host: 192.168.1.151
+ 
+  - platform: songpal
+    name: HT CT800
+    endpoint: http://192.168.1.151:10000/sony/
+
+input_boolean:
+  away:
+    name: Vacances
+    initial: off
+    icon: mdi:home-lock
+
+netatmo:
+  api_key: !secret netatmo_api_key
+  secret_key: !secret netatmo_secret_key
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
+climate:
+  - platform: netatmo
+
+scene:
+  - name: media_prelight
+    entities:
+      light.ruban:
+        state: on
+        rgb_color: [0, 0, 255]
+        brightness: 80
+      light.salon:
+        state: on
+        rgb_color: [140, 72, 239]
+        brightness: 80
+
+  - name: media_light_pause
+    entities:
+      light.ruban:
+        state: on
+        rgb_color: [0, 0, 255]
+        brightness: 80
+      light.salon:
+        state: on
+        rgb_color: [255,186,128]
+        brightness: 50
+
+  - name: media_light_off
+    entities:
+      light.ruban:
+        state: off
+      light.salon:
+        state: on
+        rgb_color: [255,186,128]
+        brightness: 80 
+
+  - name: media_light_play
+    entities:
+      light.ruban:
+        state: on
+        rgb_color: [140, 72, 239]
+        brightness: 160
+      light.salon:
+        state: off
+
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret gateway_aqara_token 
+
+switch:
+  - platform: xiaomi_miio
+    name: xiaomi_switch
+    host: 192.168.1.85
+    token: !secret switch_aqara_token 
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

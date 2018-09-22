@@ -1,0 +1,84 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - climate.thermostat
+    - input_boolean.away
+    - group.raspberry
+
+raspberry:
+  name: Raspberry
+  icon: mdi:desktop-tower
+  entities:
+    - sensor.cpu_speed
+    - sensor.disk_use_percent_
+    - sensor.memory_free
+    - sensor.processor_use
+
+fan_livingroom:
+  name: Ventilateur
+  entities: 
+    - fan.xiaomi_miio_device
+    - sensor.living_room_air_purifier_aqi
+    - sensor.motor_fan_salon
+
+livingroom:
+  view: yes
+  name: Salon
+  icon: mdi:sofa
+  entities:
+    - light.salon
+    - light.ruban
+    - scene.media_light_play
+    - scene.media_light_off
+    - group.fan_livingroom
+    - sensor.salon_temperature
+    - sensor.salon_air_purifier_humidity
+
+sun:
+  view: yes
+  name: Exterieur
+  icon: mdi:weather-sunny
+  entities:
+    - weather.openweathermap
+    - sensor.waqi_nogentsurmarne_paris
+    - sensor.temperature_nogent
+
+media:
+  name: Media
+  view: yes
+  icon: mdi:television
+  entities:
+    - media_player.kodi
+    - media_player.ht_ct800
+    - media_player.mibox3
+    - media_player.htct800_f55d54
+
+bathroom:
+  view: yes 
+  name: Salle de bain
+  icon: mdi:shower
+
+  entities:
+    - sensor.temperature_158d00022d081c
+    - sensor.humidity_158d00022d081c
+
+kitchen:
+  view: yes
+  name: Cuisine
+  icon: mdi:fridge
+  entities:
+    - sensor.illumination_7811dcdad15c
+    - sensor.temperature_158d0002042559
+    - sensor.humidity_158d0002042559
+    - light.gateway_light_7811dcdad15c
+
+bedroom:
+  view: yes
+  name: Chambre
+  icon: mdi:hotel
+  entities:
+    - switch.xiaomi_switch
+    - light.chambre
+    - light.light_chambre_1
+    - light.light_chambre_2

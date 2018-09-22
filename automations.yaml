@@ -1,0 +1,449 @@
+- alias: "remote key up"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_UP
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data_template:
+      brightness: '{{states.light.salon.attributes.brightness + 40}}'
+
+- alias: "remote key power on"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_POWER
+  action:
+    service: media_player.turn_on
+    entity_id: media_player.ht_ct800
+
+- alias: "remote key power off"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_POWER2
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.ht_ct800
+
+
+- alias: "remote key 1"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_1
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data:
+      brightness_pct: '25'
+
+- alias: "remote key 2"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_2
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data:
+      brightness_pct: '50'
+
+- alias: "remote key 3"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_3
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data:
+      brightness_pct: '75'
+
+- alias: "remote key 4"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_4
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data:
+      brightness_pct: '100'
+
+- alias: "remote key 5"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_5
+  action:
+    service: light.turn_on
+    entity_id: light.ruban
+
+- alias: "remote key 6"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NUMERIC_6
+  action:
+    service: light.turn_off
+    entity_id: light.ruban
+
+
+- alias: "remote key power games"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_GAMES
+  action:
+    service: media_player.select_source
+    data:
+      entity_id: media_player.ht_ct800
+      source: HDMI2
+
+- alias: "remote key power media"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_MEDIA
+  action:
+    service: media_player.select_source
+    data:
+      entity_id: media_player.ht_ct800
+      source: HDMI1
+
+- alias: "remote key volume down"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_VOLUMEDOWN
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.htct800_f55d54
+    data_template:
+      volume_level: '{{states.media_player.htct800_f55d54.attributes.volume_level - 0.02 }}'
+
+- alias: "remote key volume up"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_VOLUMEUP
+
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.htct800_f55d54
+    data_template:
+      volume_level: '{{states.media_player.htct800_f55d54.attributes.volume_level + 0.02 }}'
+
+
+- alias: "remote key next song"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_NEXTSONG
+
+  action:
+    service: media_player.media_next_track
+    entity_id: media_player.htct800_f55d54
+
+- alias: "remote key previous song"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_PREVIOUSSONG
+
+  action:
+    service: media_player.media_previous_track
+    entity_id: media_player.htct800_f55d54
+
+- alias: "remote key pause"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_PAUSE
+
+  action:
+    service: media_player.media_pause
+    entity_id: media_player.htct800_f55d54
+
+- alias: "remote key play"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_PLAY
+
+  action:
+    service: media_player.media_play
+    entity_id: media_player.htct800_f55d54
+
+
+- alias: "remote key mute"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_MUTE
+
+  action:
+    service: media_player.media_mute
+    entity_id: media_player.ht_ct800
+
+
+
+
+
+- alias: "remote key down"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_DOWN
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data_template:
+      brightness: '{{states.light.salon.attributes.brightness - 20}}'
+
+
+- alias: "media pause"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'idle'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_prelight
+
+    - service: fan.set_speed
+      entity_id: fan.xiaomi_miio_device
+      data:
+        speed: silent
+
+
+- alias: "media play"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'playing'
+  action:
+    service: scene.turn_on
+    entity_id: scene.media_light_play
+
+- alias: "media pause"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'paused'
+      for:
+        hours: 0 
+        minutes: 0
+        seconds: 20 
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_light_pause
+    
+- alias: "media off"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'off'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.media_light_off
+    
+    - service: fan.set_speed
+      entity_id: fan.xiaomi_miio_device
+      data:
+        speed: auto
+  
+
+- alias: "turn_on_light_during_vacances"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:40:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "on"
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 120
+        rgb_color: [255,186,128]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
+
+- alias: "turn_off_light_during_vacances"
+  trigger:
+    - platform: time
+      at: '01:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "on"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+
+- alias: "disable_vacances"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'off'
+
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 120 
+        rgb_color: [255,186,128]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2 
+
+- alias: "vacances_avaiable"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'on'
+  condition: 
+    - condition: state
+      entity_id: light.light_salon_d1
+      state: "on"
+    
+    - condition: state
+      entity_id: light.light_salon_d2
+      state: "on"
+  
+    - condition: state
+      entity_id: light.light_salon_g1
+      state: "on"
+
+    - condition: state
+      entity_id: light.light_salon_g2
+      state: "on"
+
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 10002
+        gw_mac: 78:11:DC:DA:D1:5C
+    - service: light.turn_on
+      data:
+        brightness: 255
+        rgb_color: [255, 0, 0]
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+    - delay: "00:00:10"
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.light_salon_d1
+          - light.light_salon_d2
+          - light.light_salon_g1
+          - light.light_salon_g2
+          - light.light_chambre_1
+          - light.light_chambre_2
+- alias: "vacances_unavailable"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away
+      to: 'on'
+  condition:
+    condition: or  
+    conditions:  
+      - condition: state
+        entity_id: light.light_salon_d1
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_d2
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_g1
+        state: "off"
+      - condition: state
+        entity_id: light.light_salon_g2
+        state: "off"
+
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away
+    - service: notify.notify
+      data:
+        message: 'Impossible d activer le mode vacances'
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 10001
+        gw_mac: 78:11:DC:DA:D1:5C
+
+- alias: "plug on"
+  trigger:
+    platform: sun
+    event: sunset
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "off"
+
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.xiaomi_switch
+
+- alias: "plug off"
+  trigger:
+    - platform: time
+      at: '03:00:00'
+
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - switch.xiaomi_switch
+
+
+

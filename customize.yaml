@@ -1,0 +1,34 @@
+group.default_view: {}
+
+light.light_chambre_1:
+  hidden: true
+
+light.light_chambre_2:
+  hidden: true
+
+light.light_salon_d1:
+  hidden: true
+
+light.light_salon_d2:
+  hidden: true
+
+light.light_salon_g1:
+  hidden: true
+
+light.light_salon_g2:
+  hidden: true
+
+light.ruban_led_cheminee:
+  hidden: true
+
+light.ruban_led_tv:
+  hidden: true
+
+light.ruban:
+  icon: mdi:led-strip
+
+light.salon:
+  icon: mdi:ceiling-light
+
+climate.thermostat:
+  icon: mdi:thermometer-lines
