@@ -10,12 +10,24 @@
     data_template:
       brightness: '{{states.light.salon.attributes.brightness + 40}}'
 
+- alias: "remote key down"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_DOWN
+  action:
+    service: light.turn_on
+    entity_id: light.salon
+    data_template:
+      brightness: '{{states.light.salon.attributes.brightness - 40}}'
+
 - alias: "remote key power on"
   trigger:
     - platform: event
       event_type: ir_command_received
       event_data:
-        button_name: KEY_POWER
+        button_name: KEY_MENU
   action:
     service: media_player.turn_on
     entity_id: media_player.ht_ct800
@@ -25,7 +37,7 @@
     - platform: event
       event_type: ir_command_received
       event_data:
-        button_name: KEY_POWER2
+        button_name: KEY_POWER
   action:
     service: media_player.turn_off
     entity_id: media_player.ht_ct800
@@ -107,10 +119,11 @@
       event_data:
         button_name: KEY_GAMES
   action:
-    service: media_player.select_source
-    data:
-      entity_id: media_player.ht_ct800
-      source: HDMI2
+    - delay: '00:00:02'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.ht_ct800
+        source: HDMI2
 
 - alias: "remote key power media"
   trigger:
@@ -119,10 +132,11 @@
       event_data:
         button_name: KEY_MEDIA
   action:
-    service: media_player.select_source
-    data:
-      entity_id: media_player.ht_ct800
-      source: HDMI1
+    - delay: '00:00:02'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.ht_ct800
+        source: HDMI1
 
 - alias: "remote key volume down"
   trigger:
@@ -206,19 +220,4 @@
     service: media_player.media_mute
     entity_id: media_player.ht_ct800
 
-
-
-
-
-- alias: "remote key down"
-  trigger:
-    - platform: event
-      event_type: ir_command_received
-      event_data:
-        button_name: KEY_DOWN
-  action:
-    service: light.turn_on
-    entity_id: light.salon
-    data_template:
-      brightness: '{{states.light.salon.attributes.brightness - 20}}'
 

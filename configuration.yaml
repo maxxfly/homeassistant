@@ -68,12 +68,23 @@ history_graph:
       - sensor.temperature_158d00022d081c
       - climate.thermostat
     hours_to_show: 48 
+    refresh: 60
+
   gr2:
     name: Humidite
     entities:
       - sensor.humidity_158d0002042559
       - sensor.humidity_158d00022d081c
+      - sensor.salon_air_purifier_humidity
     hours_to_show: 48
+    refresh: 60
+
+  gr3:
+    name: Fan motor
+    entities:
+      - sensor.motor_fan_salon
+    hours_to_show: 48
+    refresh: 60
 
 # View all events in a logbook
 logbook:

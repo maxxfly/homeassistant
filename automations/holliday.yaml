@@ -13,13 +13,8 @@
         brightness: 120
         rgb_color: [255,186,128]
         entity_id:
-          - light.light_salon_d1
-          - light.light_salon_d2
-          - light.light_salon_g1
-          - light.light_salon_g2
-          - light.light_chambre_1
-          - light.light_chambre_2
-
+          - light.salon
+          - light.chambre
 
 - alias: "turn_off_light_during_vacances"
   trigger:
@@ -34,12 +29,8 @@
     - service: light.turn_off
       data:
         entity_id:
-          - light.light_salon_d1
-          - light.light_salon_d2
-          - light.light_salon_g1
-          - light.light_salon_g2
-          - light.light_chambre_1
-          - light.light_chambre_2
+          - light.salon
+          - light.chambre
 
 - alias: "disable_vacances"
   trigger:
@@ -53,12 +44,8 @@
         brightness: 120
         rgb_color: [255,186,128]
         entity_id:
-          - light.light_salon_d1
-          - light.light_salon_d2
-          - light.light_salon_g1
-          - light.light_salon_g2
-          - light.light_chambre_1
-          - light.light_chambre_2
+          - light.salon
+          - light.chambre
 
 - alias: "vacances_unavailable"
   trigger:
@@ -125,20 +112,12 @@
         brightness: 255
         rgb_color: [255, 0, 0]
         entity_id:
-          - light.light_salon_d1
-          - light.light_salon_d2
-          - light.light_salon_g1
-          - light.light_salon_g2
-          - light.light_chambre_1
-          - light.light_chambre_2
+          - light.salon
+          - light.chambre
     - delay: "00:00:10"
     - service: light.turn_off
       data:
         entity_id:
-          - light.light_salon_d1
-          - light.light_salon_d2
-          - light.light_salon_g1
-          - light.light_salon_g2
-          - light.light_chambre_1
-          - light.light_chambre_2
+          - light.salon
+          - light.chambre
 
