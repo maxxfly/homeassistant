@@ -91,6 +91,16 @@
     service: light.toggle
     entity_id: light.salon
 
+- alias: "remote key record"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_RECORD
+  action:
+    service: script.turn_on
+    entity_id: script.son_night
+ 
 
 - alias: "remote key power games"
   trigger:
