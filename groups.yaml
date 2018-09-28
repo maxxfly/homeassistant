@@ -57,6 +57,7 @@ media:
     - media_player.ht_ct800
     - media_player.mibox3
     - media_player.htct800_f55d54
+    - binary_sensor.ping_binary_sensor
 
 bathroom:
   view: yes 

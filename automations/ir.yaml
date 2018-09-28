@@ -22,26 +22,6 @@
     data_template:
       brightness: '{{states.light.salon.attributes.brightness - 40}}'
 
-- alias: "remote key power on"
-  trigger:
-    - platform: event
-      event_type: ir_command_received
-      event_data:
-        button_name: KEY_MENU
-  action:
-    service: media_player.turn_on
-    entity_id: media_player.ht_ct800
-
-- alias: "remote key power off"
-  trigger:
-    - platform: event
-      event_type: ir_command_received
-      event_data:
-        button_name: KEY_POWER
-  action:
-    service: media_player.turn_off
-    entity_id: media_player.ht_ct800
-
 
 - alias: "remote key 1"
   trigger:
@@ -98,7 +78,7 @@
       event_data:
         button_name: KEY_NUMERIC_5
   action:
-    service: light.turn_on
+    service: light.toggle
     entity_id: light.ruban
 
 - alias: "remote key 6"
@@ -108,8 +88,8 @@
       event_data:
         button_name: KEY_NUMERIC_6
   action:
-    service: light.turn_off
-    entity_id: light.ruban
+    service: light.toggle
+    entity_id: light.salon
 
 
 - alias: "remote key power games"
@@ -119,11 +99,8 @@
       event_data:
         button_name: KEY_GAMES
   action:
-    - delay: '00:00:02'
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.ht_ct800
-        source: HDMI2
+    service: script.turn_on
+    entity_id: script.son_switch
 
 - alias: "remote key power media"
   trigger:
@@ -132,11 +109,8 @@
       event_data:
         button_name: KEY_MEDIA
   action:
-    - delay: '00:00:02'
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.ht_ct800
-        source: HDMI1
+    service: script.turn_on
+    entity_id: script.son_media
 
 - alias: "remote key volume down"
   trigger:
@@ -220,4 +194,24 @@
     service: media_player.media_mute
     entity_id: media_player.ht_ct800
 
+
+- alias: "switch on"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_AUDIO
+  action:
+    service: script.turn_on
+    entity_id: script.son_power_on
+
+- alias: "switch off"
+  trigger:
+    - platform: event
+      event_type: ir_command_received
+      event_data:
+        button_name: KEY_EXIT
+  action:
+    service: script.turn_on
+    entity_id: script.son_power_off
 

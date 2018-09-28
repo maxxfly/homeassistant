@@ -19,13 +19,15 @@ frontend:
 # Enables configuration UI
 config:
 
+updater:
+  include_used_components: true
+
 recorder:
   db_url: !secret mysql_path
   exclude: 
     domains:
-      - automation
+#      - automation
       - weblink
-      - updater
     entities:
       - sun.sun # Don't record sun data
       - sensor.last_boot # Comes from 'systemmonitor' sensor platform
@@ -38,17 +40,8 @@ http:
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: True
-
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -57,8 +50,10 @@ conversation:
 history:
   exclude:
     domains:
-      - automation
+ #     - automation
       - weblink
+      - group
+      - history_graph
 
 history_graph:
   gr1:
@@ -187,6 +182,11 @@ scene:
       light.salon:
         state: off
 
+binary_sensor:
+  - platform: ping
+    host: 192.168.1.141
+    count: 4
+    scan_interval: 10
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -201,4 +201,4 @@ switch:
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
-script: !include scripts.yaml
+script: !include scripts/barre_son.yaml
