@@ -130,9 +130,9 @@
         button_name: KEY_VOLUMEDOWN
   action:
     service: media_player.volume_set
-    entity_id: media_player.htct800_f55d54
+    entity_id: media_player.ht_ct800
     data_template:
-      volume_level: '{{states.media_player.htct800_f55d54.attributes.volume_level - 0.02 }}'
+      volume_level: '{{states.media_player.ht_ct800.attributes.volume_level - 0.02 }}'
 
 - alias: "remote key volume up"
   trigger:
@@ -142,10 +142,10 @@
         button_name: KEY_VOLUMEUP
 
   action:
-    service: media_player.volume_set
-    entity_id: media_player.htct800_f55d54
-    data_template:
-      volume_level: '{{states.media_player.htct800_f55d54.attributes.volume_level + 0.02 }}'
+    service: media_player.volume_up
+    entity_id: media_player.ht_ct800
+    data:
+      entity_id: media_player.ht_ct800
 
 
 - alias: "remote key next song"
