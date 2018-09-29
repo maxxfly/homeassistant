@@ -1,3 +1,11 @@
+son_default_volume:
+  sequence:
+    - service: media_player.volume_set
+      entity_id: media_player.ht_ct800
+      data_template:
+        volume_level: 0.16 
+
+
 son_power_off:
   sequence:
     - delay: '00:00:15'
@@ -11,6 +19,13 @@ son_power_on:
 
     - service: media_player.turn_on
       entity_id: media_player.ht_ct800
+
+    - wait_template: "{{ is_state('media_player.ht_ct800', 'on') }}"
+      timeout: '00:00:10'
+      continue_on_timeout: 'true'
+
+    - service: script.turn_on
+      entity_id: script.son_default_volume
 
 son_night:
   sequence:
@@ -46,6 +61,10 @@ son_media:
         entity_id: media_player.ht_ct800
         source: HDMI1
 
+    - service: script.turn_on
+      entity_id: script.son_default_volume
+
+
 son_switch:
   sequence:
     - service: script.turn_on 
@@ -63,4 +82,6 @@ son_switch:
         entity_id: media_player.ht_ct800
         source: HDMI2
 
+    - service: script.turn_on
+      entity_id: script.son_default_volume
 
