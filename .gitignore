@@ -6,6 +6,10 @@
 !automations
 !automations/*.yaml
 
+!scripts
+!scripts/*.yaml
+
+
 !*.yaml
 !.gitignore
 secrets.yaml
