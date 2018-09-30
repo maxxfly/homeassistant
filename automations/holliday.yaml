@@ -1,4 +1,4 @@
-- alias: "turn_on_light_during_vacances"
+- alias: "turn_on_light_during_holliday"
   trigger:
     platform: sun
     event: sunset
@@ -16,7 +16,7 @@
           - light.salon
           - light.chambre
 
-- alias: "turn_off_light_during_vacances"
+- alias: "turn_off_light_during_holliday"
   trigger:
     - platform: time
       at: '01:00:00'
@@ -32,7 +32,7 @@
           - light.salon
           - light.chambre
 
-- alias: "disable_vacances"
+- alias: "disable_holliday"
   trigger:
     - platform: state
       entity_id: input_boolean.away
@@ -46,8 +46,8 @@
         entity_id:
           - light.salon
           - light.chambre
-
-- alias: "vacances_unavailable"
+    
+- alias: "holliday_unavailable"
   trigger:
     - platform: state
       entity_id: input_boolean.away
@@ -80,7 +80,7 @@
         ringtone_id: 10001
         gw_mac: 78:11:DC:DA:D1:5C
 
-- alias: "vacances_avaiable"
+- alias: "holliday_avaiable"
   trigger:
     - platform: state
       entity_id: input_boolean.away
@@ -114,6 +114,7 @@
         entity_id:
           - light.salon
           - light.chambre
+
     - delay: "00:00:10"
     - service: light.turn_off
       data:

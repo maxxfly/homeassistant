@@ -1,0 +1,28 @@
+- alias: "fan livingroom on"
+  trigger:
+    platform: time
+    at: '12:00:00'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "off"
+
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id:
+          - fan.xiaomi_miio_device 
+
+- alias: "fan livingroom off"
+  trigger:
+    - platform: time
+      at: '03:00:00'
+
+  action:
+    - service: fan.turn_off
+      data:
+        entity_id:
+          - fan.xiaomi_miio_device 
+
+
