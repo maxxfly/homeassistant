@@ -107,12 +107,14 @@ fan:
   - platform: xiaomi_miio
     host: 192.168.1.133
     token: !secret fan_salon_token 
+    name: "Fan Salon"
 
 #  - platform: yr
 
 # Text to speech
-# tts:
-#  - platform: google
+tts:
+  - platform: google
+    language: 'fr'
 
 # Cloud
 cloud:
