@@ -18,6 +18,12 @@
       friendly_name: "Temperature salon"
       unit_of_measurement: '°C'
 
+    bedroom_temperature:
+      value_template: "{{ states.fan.fan_chambre.attributes.temperature }}"
+      friendly_name: "Temperature salon"
+      unit_of_measurement: '°C'
+
+
     salon_air_purifier_humidity:
       value_template: "{{ states.fan.xiaomi_miio_device.attributes.humidity }}"
       friendly_name: "Salon Humidity"
@@ -26,9 +32,22 @@
 
     living_room_air_purifier_aqi:
       value_template: "{{ states.fan.xiaomi_miio_device.attributes.aqi }}"
-      friendly_name: "Living Room AQI"
+      friendly_name: "Salon AQI"
       unit_of_measurement: AQI
       icon_template: mdi:chart-bubble
+
+    bedroom_air_purifier_humidity:
+      value_template: "{{ states.fan.fan_chambre.attributes.humidity }}"
+      friendly_name: "Chambre Humidity"
+      unit_of_measurement: "%"
+      device_class: humidity
+
+    bedroom_air_purifier_aqi:
+      value_template: "{{ states.fan.fan_chambre.attributes.aqi }}"
+      friendly_name: "Chambre AQI"
+      unit_of_measurement: AQI
+      icon_template: mdi:chart-bubble
+
 
     temperature_nogent:
       value_template: "{{ states.weather.openweathermap.attributes.temperature }}"
@@ -40,6 +59,13 @@
       friendly_name: "Vitesse Ventilateur Salon"
       unit_of_measurement: 'T/M'
       icon_template: mdi:speedometer
+
+    motor_fan_bedroom:
+      value_template: "{{ states.fan.fan_chambre.attributes.motor_speed }}"
+      friendly_name: "Vitesse Ventilateur Chambre"
+      unit_of_measurement: 'T/M'
+      icon_template: mdi:speedometer
+
 
     battery_temperature_cuisine:
       value_template: "{{ states.sensor.temperature_158d0002042559.attributes.battery_level }}"

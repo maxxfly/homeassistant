@@ -24,7 +24,8 @@ fan_livingroom:
     - fan.xiaomi_miio_device
     - sensor.living_room_air_purifier_aqi
     - sensor.motor_fan_salon
-
+    - input_select.fan_livingroom_mode
+ 
 livingroom:
   view: yes
   name: Salon
@@ -80,6 +81,14 @@ kitchen:
     - light.gateway_light_7811dcdad15c
     - sensor.battery_temperature_sdb
 
+fan_bedroom:
+  name: Ventilateur
+  entities:
+    - fan.fan_chambre
+    - sensor.bedroom_air_purifier_aqi
+    - sensor.motor_fan_bedroom
+    - input_select.fan_bedroom_mode
+
 bedroom:
   view: yes
   name: Chambre
@@ -89,3 +98,7 @@ bedroom:
     - light.chambre
     - light.light_chambre_1
     - light.light_chambre_2
+    - group.fan_bedroom
+    - sensor.bedroom_temperature
+    - sensor.bedroom_air_purifier_humidity
+
