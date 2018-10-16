@@ -5,9 +5,15 @@ default_view:
     - climate.thermostat
     - input_boolean.away
     - group.raspberry
+    - group.security
     - history_graph.humidite
     - history_graph.temperature
     - history_graph.fan_motor
+
+security:
+  name: Securite
+  entities:
+    - binary_sensor.door_sensor_bathroom
 
 raspberry:
   name: Raspberry
@@ -69,6 +75,7 @@ bathroom:
     - sensor.temperature_158d00022d081c
     - sensor.humidity_158d00022d081c
     - sensor.battery_temperature_cuisine
+    - binary_sensor.door_sensor_bathroom
 
 kitchen:
   view: yes
