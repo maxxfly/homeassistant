@@ -1,0 +1,86 @@
+- alias: "open window in livingroom"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_sensor_livingroom
+      to: "on"
+  action:
+    - service: variable.set_variable 
+      data:
+        variable: old_status_climate_away_mode
+        value_template: "{{ state_attr('climate.thermostat', 'away_mode') }}"
+
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.thermostat
+        away_mode: true
+
+    - service: variable.set_variable 
+      data:
+        variable: old_status_fan_livingroom 
+        value_template: "{{ state_attr('fan.xiaomi_miio_device', 'mode') }}"
+    - service: fan.set_speed
+      data:
+        entity_id: fan.xiaomi_miio_device
+        speed: idle
+
+- alias: "close window in livingroom"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_sensor_livingroom
+      to: "off"
+  action:
+    - service: climate.set_away_mode
+      data_template:
+        entity_id: climate.thermostat
+        away_mode:  "{{ states('variable.old_status_climate_away_mode') }}" 
+
+    - service: variable.set_variable
+      data:
+        variable: old_status_climate_away_mode
+        value: ''
+     
+    - service: fan.set_speed
+      data_template:
+        entity_id: fan.xiaomi_miio_device
+        speed: "{{ states('variable.old_status_fan_livingroom') }}"
+ 
+    - service: variable.set_variable
+      data:
+        variable: old_status_fan_livingroom
+        value: ''
+
+
+- alias: "open window in bedroom"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_sensor_bedroom
+      to: "on"
+  action:
+    - service: variable.set_variable
+      data:
+        variable: old_status_fan_bedroom
+        value_template: "{{ state_attr('fan.fan_chambre', 'mode') }}"
+
+    - service: fan.set_speed
+      data:
+        entity_id: fan.fan_chambre
+        speed: idle
+
+
+- alias: "close window in bedroom"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_sensor_bedroom
+      to: "off"
+  action:
+    - service: fan.set_speed
+      data_template:
+        entity_id: fan.fan_chambre
+        speed: "{{ states('variable.old_status_fan_bedroom') }}"
+
+    - service: variable.set_variable
+      data:
+        variable: old_status_fan_bedroom
+        value: ''
+
+

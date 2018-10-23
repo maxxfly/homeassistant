@@ -31,10 +31,11 @@
       state: "off"
 
   action:
-    - service: fan.turn_on
+    - service: fan.set_speed
       data:
         entity_id:
           - fan.xiaomi_miio_device 
+        speed: auto
 
 - alias: "fan livingroom off"
   trigger:
@@ -51,7 +52,7 @@
 - alias: "fan bedroom on"
   trigger:
     platform: time
-    at: '15:00:00'
+    at: '12:30:00'
 
   condition:
     - condition: state
@@ -59,15 +60,16 @@
       state: "off"
 
   action:
-    - service: fan.turn_on
+    - service: fan.set_speed
       data:
         entity_id:
           - fan.fan_chambre
+        speed: auto
 
 - alias: "fani bedroom off"
   trigger:
     - platform: time
-      at: '03:00:00'
+      at: '02:30:00'
 
   action:
     - service: fan.turn_off

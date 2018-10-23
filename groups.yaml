@@ -4,6 +4,9 @@ default_view:
   entities:
     - climate.thermostat
     - input_boolean.away
+    - variable.old_status_climate_away_mode
+    - variable.old_status_fan_livingroom
+    - variable.old_status_fan_bedroom
     - group.raspberry
     - group.security
     - history_graph.humidite
@@ -14,6 +17,8 @@ security:
   name: Securite
   entities:
     - binary_sensor.door_sensor_bathroom
+    - binary_sensor.door_sensor_bedroom
+    - binary_sensor.door_sensor_livingroom
 
 raspberry:
   name: Raspberry
@@ -44,7 +49,7 @@ livingroom:
     - group.fan_livingroom
     - sensor.salon_temperature
     - sensor.salon_air_purifier_humidity
-    
+    - binary_sensor.door_sensor_livingroom
 
 sun:
   view: yes
@@ -108,4 +113,5 @@ bedroom:
     - group.fan_bedroom
     - sensor.bedroom_temperature
     - sensor.bedroom_air_purifier_humidity
+    - binary_sensor.door_sensor_bedroom
 
