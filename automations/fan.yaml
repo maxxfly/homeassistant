@@ -1,25 +1,3 @@
-- alias: "select fan livingroom change"
-  trigger:
-    - platform: state
-      entity_id: input_select.fan_livingroom_mode
-  action:
-    - service: fan.set_speed
-      entity_id: fan.xiaomi_miio_device
-      data_template:
-        speed: "{{states('input_select.fan_livingroom_mode')}}"
-
-
-- alias: "select fan bedroom change"
-  trigger:
-    - platform: state
-      entity_id: input_select.fan_bedroom_mode
-  action:
-    - service: fan.set_speed
-      entity_id: fan.fan_chambre
-      data_template:
-        speed: "{{states('input_select.fan_bedroom_mode')}}"
-
-
 - alias: "fan livingroom on"
   trigger:
     platform: time

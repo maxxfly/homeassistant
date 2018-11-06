@@ -66,6 +66,17 @@
       unit_of_measurement: 'T/M'
       icon_template: mdi:speedometer
 
+    mode_fan_salon:
+      value_template: "{{ states.fan.xiaomi_miio_device.attributes.mode }}"
+      friendly_name: "Mode Ventilateur Salon"
+      icon_template: mdi:tune
+
+    mode_fan_bedroom:
+      value_template: "{{ states.fan.fan_chambre.attributes.mode }}"
+      friendly_name: "Mode Ventilateur Chambre"
+      icon_template: mdi:tune
+
+
 
     battery_temperature_cuisine:
       value_template: "{{ states.sensor.temperature_158d0002042559.attributes.battery_level }}"

@@ -38,11 +38,12 @@ variable:
       name: Old Status Fan Bedroom 
 
 
-
 updater:
   include_used_components: true
 
 recorder:
+  purge_keep_days: 3
+  purge_interval: 3
   db_url: !secret mysql_path
   exclude: 
     domains:
@@ -162,25 +163,6 @@ input_boolean:
     initial: off
     icon: mdi:home-lock
 
-input_select:
-  fan_livingroom_mode:
-    name: Mode
-    icon: mdi:auto-fix
-    options:
-      - idle
-      - silent
-      - auto
-    initial: auto
-
-  fan_bedroom_mode:
-    name: Mode
-    icon: mdi:auto-fix
-    options:
-      - idle
-      - silent
-      - auto
-    initial: auto
-    
 netatmo:
   api_key: !secret netatmo_api_key
   secret_key: !secret netatmo_secret_key

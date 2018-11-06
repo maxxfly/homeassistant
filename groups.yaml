@@ -4,9 +4,6 @@ default_view:
   entities:
     - climate.thermostat
     - input_boolean.away
-    - variable.old_status_climate_away_mode
-    - variable.old_status_fan_livingroom
-    - variable.old_status_fan_bedroom
     - group.raspberry
     - group.security
     - history_graph.humidite
@@ -35,8 +32,8 @@ fan_livingroom:
     - fan.xiaomi_miio_device
     - sensor.living_room_air_purifier_aqi
     - sensor.motor_fan_salon
-    - input_select.fan_livingroom_mode
- 
+    - sensor.mode_fan_salon
+
 livingroom:
   view: yes
   name: Salon
@@ -44,8 +41,6 @@ livingroom:
   entities:
     - light.salon
     - light.ruban
-    - scene.media_light_play
-    - scene.media_light_off
     - group.fan_livingroom
     - sensor.salon_temperature
     - sensor.salon_air_purifier_humidity
@@ -99,7 +94,7 @@ fan_bedroom:
     - fan.fan_chambre
     - sensor.bedroom_air_purifier_aqi
     - sensor.motor_fan_bedroom
-    - input_select.fan_bedroom_mode
+    - sensor.mode_fan_bedroom
 
 bedroom:
   view: yes
