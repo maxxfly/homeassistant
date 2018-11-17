@@ -34,6 +34,17 @@ fan_livingroom:
     - sensor.motor_fan_salon
     - sensor.mode_fan_salon
 
+couloir:
+  view: yes
+  name: Couloir
+  icon: mdi:door
+  entities:
+    - group.fan_bedroom
+    - light.light_couloir
+    - sensor.illumination_158d0002b84a24
+    - binary_sensor.motion_sensor_158d0002b84a24
+
+
 livingroom:
   view: yes
   name: Salon
@@ -105,7 +116,6 @@ bedroom:
     - light.chambre
     - light.light_chambre_1
     - light.light_chambre_2
-    - group.fan_bedroom
     - sensor.bedroom_temperature
     - sensor.bedroom_air_purifier_humidity
     - binary_sensor.door_sensor_bedroom

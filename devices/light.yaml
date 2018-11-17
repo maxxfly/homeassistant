@@ -1,5 +1,10 @@
 - platform: yeelight
   devices:
+    192.168.1.28:
+      name: Light couloir
+      transition: 500
+      save_on_change: False
+
     192.168.1.105:
       name: Ruban LED TV
       transition: 2000

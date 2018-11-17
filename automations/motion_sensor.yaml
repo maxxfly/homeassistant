@@ -1,0 +1,55 @@
+- alias: "detect in the corridor"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.away
+        state: "off"
+
+      - condition: or
+        conditions:
+          - condition: time
+            before: '03:00:00'
+          - condition: time
+            after: '10:00:00'
+
+  action:
+    - service: light.turn_on 
+      entity_id: light.light_couloir
+      data:
+       brightness: 255 
+
+
+- alias: "detect in the corridor in the night"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "off"
+    - condition: time
+      after: '03:00:00'
+      before: '10:00:00'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.light_couloir
+      data:
+       brightness: 50
+
+- alias: "no detect in the corridor"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      to: "off"
+  action:
+    - service: light.turn_off
+      entity_id: light.light_couloir
+
+
