@@ -5,6 +5,15 @@
     - type: memory_free
     - type: processor_use
 
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+
 - platform: waqi
   token: !secret waqi_token
   locations:
@@ -86,21 +95,5 @@
       value_template: "{{ states.fan.fan_chambre.attributes.mode }}"
       friendly_name: "Mode Ventilateur Chambre"
       icon_template: mdi:tune
-
-
-
-    battery_temperature_cuisine:
-      entity_id: sensor.temperature_158d0002042559
-      value_template: "{{ states.sensor.temperature_158d0002042559.attributes.battery_level }}"
-      friendly_name: "Batterie Thermometre Cuisine"
-      icon_template: mdi:battery
-      unit_of_measurement: "%"
-
-    battery_temperature_sdb:
-      entity_id: sensor.temperature_158d00022d081c
-      value_template: "{{ states.sensor.temperature_158d00022d081c.attributes.battery_level }}"
-      friendly_name: "Batterie Thermometre Salle de bain"
-      icon_template: mdi:battery
-      unit_of_measurement: "%"
 
 

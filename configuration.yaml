@@ -163,6 +163,16 @@ input_boolean:
     initial: off
     icon: mdi:home-lock
 
+  bypass_heater:
+    name: ByPass
+    initial: off
+
+input_datetime:
+  bypass_heater_hour:
+    name: Hour for the bypass
+    has_date: false
+    has_time: true   
+
 netatmo:
   api_key: !secret netatmo_api_key
   secret_key: !secret netatmo_secret_key
@@ -211,6 +221,8 @@ scene:
         rgb_color: [140, 72, 239]
         brightness: 160
       light.salon:
+        state: off
+      light.light_couloir:
         state: off
 
 binary_sensor:

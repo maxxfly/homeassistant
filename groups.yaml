@@ -2,17 +2,24 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - climate.thermostat
-    - input_boolean.away
+    - group.climate 
     - group.raspberry
     - group.security
     - history_graph.humidite
     - history_graph.temperature
     - history_graph.fan_motor
 
+climate:
+  name: Chauffage
+  entities:
+    - climate.thermostat
+    - input_boolean.bypass_heater
+    - input_datetime.bypass_heater_hour
+
 security:
   name: Securite
   entities:
+    - input_boolean.away
     - binary_sensor.door_sensor_bathroom
     - binary_sensor.door_sensor_bedroom
     - binary_sensor.door_sensor_livingroom
@@ -85,7 +92,6 @@ bathroom:
   entities:
     - sensor.temperature_158d00022d081c
     - sensor.humidity_158d00022d081c
-    - sensor.battery_temperature_cuisine
     - binary_sensor.door_sensor_bathroom
 
 kitchen:
@@ -97,7 +103,8 @@ kitchen:
     - sensor.temperature_158d0002042559
     - sensor.humidity_158d0002042559
     - light.gateway_light_7811dcdad15c
-    - sensor.battery_temperature_sdb
+    - binary_sensor.water_leak_sensor_158d000233de05
+    - binary_sensor.water_leak_sensor_158d0002340172
 
 fan_bedroom:
   name: Ventilateur
