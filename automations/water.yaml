@@ -1,0 +1,40 @@
+- alias: "flood start"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d000233de05
+      to: "on"
+
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d0002340172  
+      to: "on"
+ 
+  action:
+    - service: notify.notify
+      data:
+        message: "Fuite d eau dans la cuisine"
+
+    - service: light.turn_on
+      data:
+        entity_id: light.gateway_light_7811dcdad15c
+        brightness: 255
+        rgb_color: [255, 0, 0]
+
+
+- alias: "flood start"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d000233de05
+      to: "off"
+
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d0002340172    
+      to: "off"
+
+  action:
+    - service: notify.notify
+      data:
+        message: "Fuite d eau terminee dans la cuisine"
+    
+    - service: light.turn_off
+      data:
+        entity_id: light.gateway_light_7811dcdad15c
