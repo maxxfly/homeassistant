@@ -31,7 +31,7 @@
     bedroom_temperature:
       entity_id: fan.fan_chambre
       value_template: "{{ states.fan.fan_chambre.attributes.temperature }}"
-      friendly_name: "Temperature salon"
+      friendly_name: "Temperature Chambre"
       unit_of_measurement: '°C'
 
 
