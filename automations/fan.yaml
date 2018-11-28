@@ -56,4 +56,27 @@
           - fan.fan_chambre
 
 
+- alias: "fan bedroom is in silent" 
+  trigger:
+    platform: state
+    entity_id: sensor.mode_fan_bedroom
+    to: silent
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.fan_chambre
+        speed: auto
+
+- alias: "fan living is in silent"
+  trigger:
+    platform: state
+    entity_id: sensor.mode_fan_salon
+    to: silent
+  action:
+    - service: fan.set_speed
+      data:
+        entity_id:
+          - fan.xiaomi_miio_device
+        speed: auto
 
