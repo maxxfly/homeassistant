@@ -63,6 +63,7 @@ livingroom:
     - sensor.salon_temperature
     - sensor.salon_air_purifier_humidity
     - binary_sensor.door_sensor_livingroom
+    - scene.photo
 
 sun:
   view: yes

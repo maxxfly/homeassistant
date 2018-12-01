@@ -183,6 +183,13 @@ climate:
   - platform: netatmo
 
 scene:
+  - name: photo
+    entities:
+      light.salon:
+        state: on
+        kelvin: 5500
+        brightness: 2555
+
   - name: media_prelight
     entities:
       light.ruban:
