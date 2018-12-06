@@ -1,7 +1,7 @@
 - alias: "detect in the corridor"
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      entity_id: binary_sensor.main_motion
       to: "on"
   condition:
     condition: and
@@ -27,7 +27,7 @@
 - alias: "detect in the corridor in the night"
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      entity_id: binary_sensor.main_motion
       to: "on"
   condition:
     - condition: state
@@ -46,7 +46,7 @@
 - alias: "no detect in the corridor"
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0002b84a24
+      entity_id: binary_sensor.main_motion
       to: "off"
   action:
     - service: light.turn_off

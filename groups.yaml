@@ -23,6 +23,7 @@ security:
     - binary_sensor.door_sensor_bathroom
     - binary_sensor.door_sensor_bedroom
     - binary_sensor.door_sensor_livingroom
+    - binary_sensor.main_door
 
 raspberry:
   name: Raspberry
@@ -49,7 +50,7 @@ couloir:
     - group.fan_bedroom
     - light.light_couloir
     - sensor.illumination_158d0002b84a24
-    - binary_sensor.motion_sensor_158d0002b84a24
+    - binary_sensor.main_motion
 
 
 livingroom:

@@ -1,3 +1,18 @@
+- alias: "detect open door during holliday"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_sensor_bathroom, binary_sensor.door_sensor_bedroom, binary_sensor.door_sensor_living, binary_sensor.main_door
+    to: "on"
+  condition:
+    - condition: state
+      entity_id: input_boolean.away
+      state: "on"
+  action:
+    - service: notify.notify
+      data:
+        message: 'ALERTE! Porte ouverte'
+
+
 - alias: "turn_on_light_during_holliday"
   trigger:
     platform: sun
