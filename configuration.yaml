@@ -19,25 +19,6 @@ frontend:
 # Enables configuration UI
 config:
 
-# Enables variable component
-variable:
-  old_status_climate_away_mode:
-    value: "" 
-    restore: true
-    attributes:
-      name: Old Status Climate Away Mode
-  old_status_fan_livingroom:
-    value: ""
-    restore: true
-    attributes:
-      name: Old Status Fan LivingRoon 
-  old_status_fan_bedroom:
-    value: ""
-    restore: true
-    attributes:
-      name: Old Status Fan Bedroom 
-
-
 updater:
   include_used_components: true
 
