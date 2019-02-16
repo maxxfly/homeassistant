@@ -1,4 +1,5 @@
 - alias: "detect in the corridor"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.main_motion
@@ -25,6 +26,7 @@
 
 
 - alias: "detect in the corridor in the night"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.main_motion
@@ -44,6 +46,7 @@
        brightness: 50
 
 - alias: "no detect in the corridor"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.main_motion

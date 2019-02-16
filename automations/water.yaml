@@ -1,4 +1,5 @@
 - alias: "flood start"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.water_leak_sensor_158d000233de05
@@ -21,6 +22,7 @@
 
 
 - alias: "flood start"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.water_leak_sensor_158d000233de05

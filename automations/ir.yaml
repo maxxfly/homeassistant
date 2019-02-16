@@ -1,4 +1,5 @@
 - alias: "remote key up"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -11,6 +12,7 @@
       brightness: '{{states.light.salon.attributes.brightness + 40}}'
 
 - alias: "remote key down"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -24,6 +26,7 @@
 
 
 - alias: "remote key 1"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -36,6 +39,7 @@
       brightness_pct: '25'
 
 - alias: "remote key 2"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -48,6 +52,7 @@
       brightness_pct: '50'
 
 - alias: "remote key 3"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -60,6 +65,7 @@
       brightness_pct: '75'
 
 - alias: "remote key 4"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -72,6 +78,7 @@
       brightness_pct: '100'
 
 - alias: "remote key 5"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -82,6 +89,7 @@
     entity_id: light.ruban
 
 - alias: "remote key 6"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -92,6 +100,7 @@
     entity_id: light.salon
 
 - alias: "remote key record"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -103,6 +112,7 @@
  
 
 - alias: "remote key power games"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -113,6 +123,7 @@
     entity_id: script.son_switch
 
 - alias: "remote key power media"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -123,6 +134,7 @@
     entity_id: script.son_media
 
 - alias: "remote key volume down"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -135,6 +147,7 @@
       volume_level: '{{states.media_player.ht_ct800.attributes.volume_level - 0.02 }}'
 
 - alias: "remote key volume up"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -149,6 +162,7 @@
 
 
 - alias: "remote key next song"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -160,6 +174,7 @@
     entity_id: media_player.htct800_f55d54
 
 - alias: "remote key previous song"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -171,6 +186,7 @@
     entity_id: media_player.htct800_f55d54
 
 - alias: "remote key pause"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -182,6 +198,7 @@
     entity_id: media_player.htct800_f55d54
 
 - alias: "remote key play"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -194,6 +211,7 @@
 
 
 - alias: "remote key mute"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -206,6 +224,7 @@
 
 
 - alias: "switch on"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received
@@ -216,6 +235,7 @@
     entity_id: script.son_power_on
 
 - alias: "switch off"
+  initial_state: true
   trigger:
     - platform: event
       event_type: ir_command_received

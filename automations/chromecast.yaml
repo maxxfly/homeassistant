@@ -1,4 +1,5 @@
 - alias: "chromecast idle"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.htct800_f55d54 
@@ -8,6 +9,7 @@
       entity_id: script.son_chromecast_idle
 
 - alias: "chromecast not idle"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.htct800_f55d54

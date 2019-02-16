@@ -1,4 +1,5 @@
 - alias: "media pause"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.kodi
@@ -13,6 +14,7 @@
         speed: silent
 
 - alias: "media play"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.kodi
@@ -22,6 +24,7 @@
     entity_id: scene.media_light_play
 
 - alias: "media pause"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.kodi
@@ -35,6 +38,7 @@
       entity_id: scene.media_light_pause
 
 - alias: "media off"
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.kodi

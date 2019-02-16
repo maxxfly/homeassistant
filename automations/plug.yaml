@@ -1,4 +1,5 @@
 - alias: "plug on"
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
@@ -15,6 +16,7 @@
           - switch.xiaomi_switch
 
 - alias: "plug off"
+  initial_state: true
   trigger:
     - platform: time
       at: '03:00:00'

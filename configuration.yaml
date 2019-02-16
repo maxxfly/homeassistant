@@ -19,6 +19,8 @@ frontend:
 # Enables configuration UI
 config:
 
+system_health:
+
 updater:
   include_used_components: true
 

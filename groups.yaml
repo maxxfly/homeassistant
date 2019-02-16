@@ -30,7 +30,7 @@ raspberry:
   icon: mdi:desktop-tower
   entities:
     - sensor.cpu_speed
-    - sensor.disk_use_percent_
+    - sensor.disk_use_percent
     - sensor.memory_free
     - sensor.processor_use
 

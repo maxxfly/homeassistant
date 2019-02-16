@@ -1,7 +1,18 @@
 - alias: "fan livingroom on"
+  initial_state: true
   trigger:
-    platform: time
-    at: '12:00:00'
+    - platform: time
+      at: '12:00:00'
+    - platform: time
+      at: '13:00:00'
+    - platform: time
+      at: '14:00:00'
+    - platform: time
+      at: '15:00:00'
+    - platform: time
+      at: '16:00:00'
+    - platform: time
+      at: '17:00:00'
 
   condition:
     - condition: state
@@ -16,6 +27,7 @@
         speed: auto
 
 - alias: "fan livingroom off"
+  initial_state: true
   trigger:
     - platform: time
       at: '03:00:00'
@@ -28,9 +40,20 @@
 
 
 - alias: "fan bedroom on"
+  initial_state: true
   trigger:
-    platform: time
-    at: '12:30:00'
+    - platform: time
+      at: '12:30:00'
+    - platform: time
+      at: '13:30:00'
+    - platform: time
+      at: '14:30:00'
+    - platform: time
+      at: '15:30:00'
+    - platform: time
+      at: '16:30:00'
+    - platform: time
+      at: '17:30:00'
 
   condition:
     - condition: state
@@ -45,6 +68,7 @@
         speed: auto
 
 - alias: "fani bedroom off"
+  initial_state: true
   trigger:
     - platform: time
       at: '02:30:00'
@@ -56,7 +80,8 @@
           - fan.fan_chambre
 
 
-- alias: "fan bedroom is in silent" 
+- alias: "fan bedroom is in silent"
+  initial_state: true 
   trigger:
     platform: state
     entity_id: sensor.mode_fan_bedroom
@@ -69,6 +94,7 @@
         speed: auto
 
 - alias: "fan living is in silent"
+  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.mode_fan_salon
