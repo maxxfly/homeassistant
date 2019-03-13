@@ -96,4 +96,8 @@
       friendly_name: "Mode Ventilateur Chambre"
       icon_template: mdi:tune
 
-
+    consommation:
+      entity_id: switch.plug_158d0002169f9c
+      value_template: "{{ states.switch.plug_158d0002169f9c.attributes.load_power }}"
+      friendly_name: "Consommation electrique"
+      icon_template: mdi:power-plug
