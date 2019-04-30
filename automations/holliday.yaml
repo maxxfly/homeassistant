@@ -76,16 +76,16 @@
     condition: or
     conditions:
       - condition: state
-        entity_id: light.light_salon_d1
+        entity_id: light.yeelight_color1_7c49eb129f02
         state: "off"
       - condition: state
-        entity_id: light.light_salon_d2
+        entity_id: light.yeelight_color1_7c49eb12bdaa 
         state: "off"
       - condition: state
-        entity_id: light.light_salon_g1
+        entity_id: light.yeelight_color1_7811dcd9215e 
         state: "off"
       - condition: state
-        entity_id: light.light_salon_g2
+        entity_id: light.yeelight_color1_7811dcaa3bd9 
         state: "off"
 
   action:
@@ -108,19 +108,19 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: light.light_salon_d1
+      entity_id: light.yeelight_color1_7811dcaa3bd9 
       state: "on"
 
     - condition: state
-      entity_id: light.light_salon_d2
+      entity_id: light.yeelight_color1_7c49eb129f02 
       state: "on"
 
     - condition: state
-      entity_id: light.light_salon_g1
+      entity_id: light.yeelight_color1_7c49eb12bdaa 
       state: "on"
 
     - condition: state
-      entity_id: light.light_salon_g2
+      entity_id: light.yeelight_color1_7811dca8145c
       state: "on"
 
   action:

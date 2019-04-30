@@ -1,34 +1,38 @@
 group.default_view: {}
 
-light.light_chambre_1:
-  hidden: true
+light.yeelight_color1_7811dc6b8dd2:
+  friendly_name: salon d2
+  transition: 2000
 
-light.light_chambre_2:
-  hidden: true
+light.yeelight_color1_7811dca8145c:
+  friendly_name: salon d1
+  transition: 2000
 
-light.light_salon_d1:
-  hidden: true
+light.yeelight_color1_7811dcaa3bd9:
+  friendly_name: chambre 2
+  transition: 2000
 
-light.light_salon_d2:
-  hidden: true
+light.yeelight_color1_7811dcd9215e:
+  friendly_name: chambre 1
+  transition: 2000
 
-light.light_salon_g1:
-  hidden: true
+light.yeelight_color1_7c49eb129f02:
+  friendly_name: salon g2
+  transition: 2000
 
-light.light_salon_g2:
-  hidden: true
+light.yeelight_color1_7c49eb12bdaa:
+  friendly_name: salon g1
+  transition: 2000
 
-light.ruban_led_cheminee:
-  hidden: true
+light.yeelight_ct2_7c49ebb78d06:
+  friendly_name: couloir
+  transition: 2000
 
-light.ruban_led_tv:
-  hidden: true
+light.yeelight_strip1_7811dc66f469:
+  friendly_name: strip cheminee
+  transition: 2000
 
-light.ruban:
-  icon: mdi:led-strip
+light.yeelight_strip1_34ce0087e107:
+  friendly_name: strip TV  
+  transition: 2000
 
-light.salon:
-  icon: mdi:ceiling-light
-
-climate.thermostat:
-  icon: mdi:thermometer-lines

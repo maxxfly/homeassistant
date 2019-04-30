@@ -12,7 +12,7 @@ default_view:
 climate:
   name: Chauffage
   entities:
-    - climate.thermostat
+    - climate.netatmo_salon 
     - input_boolean.bypass_heater
     - input_datetime.bypass_heater_hour
 
@@ -48,7 +48,7 @@ couloir:
   icon: mdi:door
   entities:
     - group.fan_bedroom
-    - light.light_couloir
+    - light.yeelight_ct2_7c49ebb78d06 
     - sensor.illumination_158d0002b84a24
     - binary_sensor.main_motion
 

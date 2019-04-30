@@ -11,7 +11,7 @@
   action:
     - service: climate.set_temperature
       data:
-        entity_id: climate.thermostat
+        entity_id: climate.netatmo_salon 
         temperature: 20
     - service: input_boolean.turn_off
       data:

@@ -20,7 +20,7 @@
 
   action:
     - service: light.turn_on 
-      entity_id: light.light_couloir
+      entity_id: light.yeelight_ct2_7c49ebb78d06 
       data:
        brightness: 255 
 
@@ -41,7 +41,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.light_couloir
+      entity_id: light.yeelight_ct2_7c49ebb78d06 
       data:
        brightness: 50
 
@@ -53,6 +53,6 @@
       to: "off"
   action:
     - service: light.turn_off
-      entity_id: light.light_couloir
+      entity_id: light.yeelight_ct2_7c49ebb78d06
 
 

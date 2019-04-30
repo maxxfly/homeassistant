@@ -13,6 +13,13 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+  # Secrets are defined in the file secrets.yaml
+  auth_providers:
+    - type: legacy_api_password
+      api_password: !secret http_password
+
+
+
 # Enables the frontend
 frontend:
 
@@ -38,12 +45,6 @@ recorder:
       - sensor.date
 
 
-http:
-  # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
-
 # Discover some devices automatically
 discovery:
 
@@ -65,7 +66,7 @@ history_graph:
     entities:
       - sensor.temperature_158d0002042559
       - sensor.temperature_158d00022d081c
-      - climate.thermostat
+      - climate.netatmo_salon
       - sensor.bedroom_temperature
     hours_to_show: 48 
     refresh: 60
@@ -106,15 +107,6 @@ lirc:
 # Track the sun
 sun:
 
-# Weather prediction
-weather:
-  - platform: openweathermap
-    api_key: !secret openweathermap_token 
-    mode: daily
-    forecast: true
-    monitored_conditions:
-      - weather
-
 sensor: !include devices/sensor.yaml
 
 fan:
@@ -124,7 +116,7 @@ fan:
     name: "Fan Salon"
 
   - platform: xiaomi_miio
-    host: 192.168.1.134
+    host: 192.168.1.135
     token: !secret fan_chambre_token
     name: "Fan Chambre"
 
@@ -132,7 +124,8 @@ fan:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
     language: 'fr'
 
 # Cloud
@@ -190,13 +183,13 @@ scene:
         state: on
         rgb_color: [140, 72, 239]
         brightness: 80
-
   - name: media_light_pause
     entities:
       light.ruban:
         state: on
         rgb_color: [0, 0, 255]
         brightness: 80
+
       light.salon:
         state: on
         rgb_color: [255,186,128]
@@ -219,7 +212,7 @@ scene:
         brightness: 160
       light.salon:
         state: off
-      light.light_couloir:
+      light.light.yeelight_ct2_7c49ebb78d06:
         state: off
 
 binary_sensor:

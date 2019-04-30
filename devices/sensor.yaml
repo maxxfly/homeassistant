@@ -23,8 +23,8 @@
 - platform: template
   sensors:
     salon_temperature:
-      entity_id: climate.thermostat
-      value_template: "{{ states.climate.thermostat.attributes.current_temperature }}"
+      entity_id: climate.netatmo_salon
+      value_template: "{{ states.climate.netatmo_salon.attributes.current_temperature }}"
       friendly_name: "Temperature salon"
       unit_of_measurement: '°C'
 
@@ -101,3 +101,5 @@
       value_template: "{{ states.switch.plug_158d0002169f9c.attributes.load_power }}"
       friendly_name: "Consommation electrique"
       icon_template: mdi:power-plug
+      unit_of_measurement: Watt
+
