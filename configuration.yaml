@@ -89,6 +89,13 @@ history_graph:
     hours_to_show: 48
     refresh: 60
 
+  gr4:
+    name: Torrent
+    entities:
+      - sensor.transmission_up_speed
+    hours_to_show: 48
+    refresh: 60
+
   consommation:
     name: Consommation
     entities:
@@ -108,6 +115,15 @@ lirc:
 sun:
 
 sensor: !include devices/sensor.yaml
+
+transmission:
+  host: 192.168.1.103
+  username: !secret transmission_username 
+  password: !secret transmission_password
+  monitored_conditions:
+  - current_status
+  - download_speed
+  - upload_speed
 
 fan:
   - platform: xiaomi_miio
@@ -179,41 +195,54 @@ scene:
         state: on
         rgb_color: [0, 0, 255]
         brightness: 80
+        transition: 3
+      
       light.salon:
         state: on
         rgb_color: [140, 72, 239]
         brightness: 80
+        transition: 3
+
   - name: media_light_pause
     entities:
       light.ruban:
         state: on
         rgb_color: [0, 0, 255]
         brightness: 80
+        transition: 3
 
       light.salon:
         state: on
         rgb_color: [255,186,128]
         brightness: 50
+        transition: 3
 
   - name: media_light_off
     entities:
       light.ruban:
         state: off
+        transition: 3
+
       light.salon:
         state: on
         rgb_color: [255,186,128]
         brightness: 80 
+        transition: 3
+
 
   - name: media_light_play
     entities:
       light.ruban:
         state: on
         rgb_color: [140, 72, 239]
-        brightness: 160
+        brightness: 230
+        transition: 3
+
       light.salon:
+        transition: 3
         state: off
-      light.light.yeelight_ct2_7c49ebb78d06:
-        state: off
+#      light.light.yeelight_ct2_7c49ebb78d06:
+#        state: off
 
 binary_sensor:
   - platform: ping

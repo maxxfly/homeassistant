@@ -66,6 +66,8 @@ son_media:
     - service: script.turn_on
       entity_id: script.son_default_volume
 
+    - service: media_player.turn_off
+      entity_id: media_player.htct800_f55d54
 
 son_switch:
   sequence:

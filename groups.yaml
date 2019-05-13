@@ -8,6 +8,7 @@ default_view:
     - history_graph.humidite
     - history_graph.temperature
     - history_graph.fan_motor
+    - history_graph.torrent
 
 climate:
   name: Chauffage
